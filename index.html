@@ -2,6 +2,7 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Em Breve | METAVISION</title>
   <style>
     * {
@@ -70,7 +71,7 @@
     }
 
     p {
-      font-size: 1.2em;
+      font-size: 1.5em;
       z-index: 1;
     }
 
@@ -95,6 +96,42 @@
     .socials a:hover {
       color: #ffffff;
     }
+
+    @media (max-width: 768px) {
+      .scroll-text {
+        font-size: 2.5em;
+      }
+
+      h1 {
+        font-size: 3em;
+      }
+
+      p {
+        font-size: 1.2em;
+      }
+
+      #countdown {
+        font-size: 1.5em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .scroll-text {
+        font-size: 2em;
+      }
+
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1em;
+      }
+
+      #countdown {
+        font-size: 1.2em;
+      }
+    }
   </style>
 </head>
 <body>
@@ -110,7 +147,7 @@
   <div id="countdown"></div>
 
   <div class="socials">
-    <a href="https://www.instagram.com/_metavisi0n_/">Instagram</a>
+    <a href="https://www.instagram.com/_metavisi0n_/" target="_blank">Instagram</a>
   </div>
 
   <!-- Fundo animado embaixo -->

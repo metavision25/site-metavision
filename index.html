@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Em Breve | METAVISION</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #0a0a0a;
+      color: #fff;
+      overflow: hidden;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      text-align: center;
+    }
+
+    .scroll-text {
+      position: absolute;
+      width: 200%;
+      font-size: 3.5em;
+      font-weight: bold;
+      white-space: nowrap;
+      opacity: 0.25;
+      color: #00ffe7;
+      text-shadow: 0 0 15px #00ffe7, 0 0 30px #00ffe7;
+      animation: scroll 25s linear infinite;
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .scroll-top {
+      top: 5%;
+    }
+
+    .scroll-bottom {
+      bottom: 5%;
+    }
+
+    @keyframes scroll {
+      0% { transform: translateX(0%); }
+      100% { transform: translateX(-50%); }
+    }
+
+    h1 {
+      font-size: 4em;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, #00ffe7, #00bfff, #00ffcc, #ff00ff);
+      background-size: 400% 400%;
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: gradient-animation 10s ease infinite;
+      z-index: 1;
+    }
+
+    @keyframes gradient-animation {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    p {
+      font-size: 1.2em;
+      z-index: 1;
+    }
+
+    #countdown {
+      font-size: 1.8em;
+      margin: 15px 0;
+      z-index: 1;
+    }
+
+    .socials {
+      z-index: 1;
+    }
+
+    .socials a {
+      margin: 0 10px;
+      color: #00ffe7;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    .socials a:hover {
+      color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Fundo animado em cima -->
+  <div class="scroll-text scroll-top">
+    METAVISION • SKYMETRIC • METAVISION • SKYMETRIC • METAVISION • SKYMETRIC •
+  </div>
+
+  <!-- Título e conteúdo -->
+  <h1>METAVISION</h1>
+  <p>Lançamento oficial em <strong>11/08/2025</strong></p>
+  <div id="countdown"></div>
+
+  <div class="socials">
+    <a href="https://www.instagram.com/_metavisi0n_/">Instagram</a>
+  </div>
+
+  <!-- Fundo animado embaixo -->
+  <div class="scroll-text scroll-bottom">
+    METAVISION • SKYMETRIC • METAVISION • SKYMETRIC • METAVISION • SKYMETRIC •
+  </div>
+
+  <!-- Script de contagem regressiva -->
+  <script>
+    const launchDate = new Date("2025-08-11T00:00:00").getTime();
+
+    const timer = setInterval(() => {
+      const now = new Date().getTime();
+      const distance = launchDate - now;
+
+      if (distance <= 0) {
+        clearInterval(timer);
+        document.getElementById("countdown").innerHTML = "Já está no ar!";
+        return;
+      }
+
+      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+      document.getElementById("countdown").innerHTML =
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }, 1000);
+  </script>
+</body>
+</html>

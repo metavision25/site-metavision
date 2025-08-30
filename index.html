@@ -1,182 +1,103 @@
-<!DOCTYPE html>
-<html lang="pt-BR">
+<!doctype html>
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Em Breve | METAVISION</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #0a0a0a;
-      color: #fff;
-      overflow: hidden;
-      height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      text-align: center;
-    }
-
-    .scroll-text {
-      position: absolute;
-      width: 200%;
-      font-size: 3.5em;
-      font-weight: bold;
-      white-space: nowrap;
-      opacity: 0.25;
-      color: #00ffe7;
-      text-shadow: 0 0 15px #00ffe7, 0 0 30px #00ffe7;
-      animation: scroll 25s linear infinite;
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .scroll-top {
-      top: 5%;
-    }
-
-    .scroll-bottom {
-      bottom: 5%;
-    }
-
-    @keyframes scroll {
-      0% { transform: translateX(0%); }
-      100% { transform: translateX(-50%); }
-    }
-
-    h1 {
-      font-size: 4em;
-      margin-bottom: 10px;
-      background: linear-gradient(90deg, #00ffe7, #00bfff, #00ffcc, #ff00ff);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient-animation 10s ease infinite;
-      z-index: 1;
-    }
-
-    @keyframes gradient-animation {
-      0% { background-position: 0% 50%; }
-      50% { background-position: 100% 50%; }
-      100% { background-position: 0% 50%; }
-    }
-
-    p {
-      font-size: 1.5em;
-      z-index: 1;
-    }
-
-    #countdown {
-      font-size: 1.8em;
-      margin: 15px 0;
-      z-index: 1;
-    }
-
-    .socials {
-      z-index: 1;
-    }
-
-    .socials a {
-      margin: 0 10px;
-      color: #00ffe7;
-      text-decoration: none;
-      font-weight: bold;
-      transition: color 0.3s;
-    }
-
-    .socials a:hover {
-      color: #ffffff;
-    }
-
-    @media (max-width: 768px) {
-      .scroll-text {
-        font-size: 2.5em;
-      }
-
-      h1 {
-        font-size: 3em;
-      }
-
-      p {
-        font-size: 1.2em;
-      }
-
-      #countdown {
-        font-size: 1.5em;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .scroll-text {
-        font-size: 2em;
-      }
-
-      h1 {
-        font-size: 2.5em;
-      }
-
-      p {
-        font-size: 1em;
-      }
-
-      #countdown {
-        font-size: 1.2em;
-      }
-    }
-  </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Salgados & Doces — Encomendas</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
+<body class="bg-neutral-50 text-neutral-900 font-inter">
+  <header class="sticky top-0 z-40 bg-white/80 backdrop-blur border-b">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+  <img src="imagens/Logo hamburgueria moderno.png" alt="Logo Salgados & Doces" class="h-9 w-9 rounded-2xl object-cover">
+  <h1 class="text-lg sm:text-xl font-extrabold">Dinica Salgados & Doces</h1>
+      </div>
 
-  <!-- Fundo animado em cima -->
-  <div class="scroll-text scroll-top">
-    METAVISION • SKYMETRIC • METAVISION • SKYMETRIC • METAVISION • SKYMETRIC •
+      <button id="openCart" class="px-4 py-2 rounded-2xl border hover:bg-neutral-100 transition">Carrinho (<span id="cartCount">0</span>)</button>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4">
+    <!-- Seção Hero -->
+    <section class="mt-8 md:mt-12 grid md:grid-cols-2 gap-8 items-center">
+      <div>
+        <h2 class="text-3xl md:text-5xl font-extrabold leading-tight">Encomende seus <span class="underline decoration-4">salgados</span> e <span class="underline decoration-4">doces</span> favoritos</h2>
+        <p class="mt-4 text-neutral-600">Qualidade artesanal, entrega combinada e preços justos. Monte seu pedido agora e receba no melhor horário para você.</p>
+        <div class="mt-6 flex gap-3">
+          <a href="#cardapio" class="px-5 py-3 rounded-2xl bg-neutral-900 text-white hover:opacity-90 transition">Ver Cardápio</a>
+          <a href="#checkout" class="px-5 py-3 rounded-2xl border hover:bg-neutral-100 transition">Finalizar Pedido</a>
+        </div>
+      </div>
+   <div class="rounded-3xl overflow-hidden shadow-xl h-83 md:h-100">
+  <img alt="Salgados e doces" class="w-full h-full object-cover" src="imagens/Post instagram promoção de salgadinhos de festa moderno em vermelho e marrom.png">
+</div>
+
+
+    </section>
+
+    <!-- Seção Cardápio -->
+    <section id="cardapio" class="mt-12">
+      <div class="flex items-end justify-between">
+        <h3 class="text-2xl md:text-3xl font-extrabold">Cardápio</h3>
+        <div class="text-sm text-neutral-500">Clique em um item para adicionar ao carrinho</div>
+      </div>
+      <div id="products" class="mt-6 grid sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+    </section>
+
+  <!-- Seção Checkout -->
+<section id="checkout" class="mt-16 mb-24">
+  <h3 class="text-2xl md:text-3xl font-extrabold">Finalizar Pedido</h3>
+
+  <p class="mt-2 text-sm text-red-600 font-semibold">
+    ⚠️ Atenção: Os pedidos são apenas para a cidade de Oriximiná, Pará, Brasil.
+  </p>
+
+  <form action="https://formsubmit.co/SEU_EMAIL_AQUI@gmail.com" method="POST" class="mt-6 grid md:grid-cols-2 gap-6">
+    <div class="grid gap-4">
+      <input name="Nome" placeholder="Seu nome" class="field" required>
+      <input name="Telefone" placeholder="Telefone/WhatsApp" class="field" required>
+      <input name="Endereço" placeholder="Endereço para entrega" class="field" required>
+      <input name="Data de entrega" type="date" class="field" required>
+      <textarea name="Observações" placeholder="Observações (opcional)" class="field"></textarea>
+
+      <!-- campos escondidos do FormSubmit -->
+      <input type="hidden" name="_subject" value="📦 Nova encomenda pelo site!">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="_captcha" value="false">
+    </div>
+
+    <div class="rounded-3xl border p-4 md:p-6">
+      <h4 class="font-bold">Resumo do Pedido</h4>
+      <div id="summary" class="text-sm text-neutral-600 mt-2">Seu carrinho está vazio.</div>
+      <button class="w-full mt-6 px-5 py-3 rounded-2xl bg-neutral-900 text-white hover:opacity-90 transition" type="submit">
+        Enviar pedido
+      </button>
+    </div>
+  </form>
+</section>
+
+
+  <!-- Painel Carrinho -->
+  <div id="cartPanel" class="fixed inset-0 hidden">
+    <div class="absolute inset-0 bg-black/40" id="closeCart"></div>
+    <aside class="absolute right-0 top-0 h-full w-full sm:w-[420px] bg-white shadow-2xl p-6 overflow-y-auto">
+      <div class="flex items-center justify-between">
+        <h5 class="text-xl font-bold">Seu carrinho</h5>
+        <button id="closeCartBtn" class="p-2 rounded-2xl border">Fechar</button>
+      </div>
+      <div id="cartItems" class="mt-4 grid gap-3"></div>
+      <div id="cartTotal" class="mt-4 font-semibold"></div>
+      <button id="goCheckout" class="mt-6 w-full px-5 py-3 rounded-2xl bg-neutral-900 text-white">Ir para o checkout</button>
+    </aside>
   </div>
 
-  <!-- Título e conteúdo -->
-  <h1>METAVISION</h1>
-  <p>Lançamento oficial em <strong>11/08/2025</strong></p>
-  <div id="countdown"></div>
+  <footer class="border-t py-10 text-center text-sm text-neutral-500">
+    © <span id="year"></span> Salgados & Doces. Desenvolvido por Metavision.
+  </footer>
 
-  <div class="socials">
-    <a href="https://www.instagram.com/_metavisi0n_/" target="_blank">Instagram</a>
-  </div>
-
-  <!-- Fundo animado embaixo -->
-  <div class="scroll-text scroll-bottom">
-    METAVISION • SKYMETRIC • METAVISION • SKYMETRIC • METAVISION • SKYMETRIC •
-  </div>
-
-  <!-- Script de contagem regressiva -->
-  <script>
-    const launchDate = new Date("2025-08-11T00:00:00").getTime();
-
-    const timer = setInterval(() => {
-      const now = new Date().getTime();
-      const distance = launchDate - now;
-
-      if (distance <= 0) {
-        clearInterval(timer);
-        document.getElementById("countdown").innerHTML = "Já está no ar!";
-        return;
-      }
-
-      const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-      document.getElementById("countdown").innerHTML =
-        `${days}d ${hours}h ${minutes}m ${seconds}s`;
-    }, 1000);
-  </script>
+  <script src="app.js"></script>
 </body>
 </html>

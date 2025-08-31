@@ -91,6 +91,7 @@ goCheckoutBtn.addEventListener("click", () => {
 });
 
 // Envia os produtos junto com o formulário
+// Envia os produtos junto com o formulário
 orderForm.addEventListener("submit", (e) => {
   if(cart.length === 0){
     e.preventDefault();
@@ -98,10 +99,11 @@ orderForm.addEventListener("submit", (e) => {
     return;
   }
 
-  const total = cart.reduce((acc, p) => acc + p.price, 0);
+  // Cria uma lista dos produtos com nome e preço
   const produtosString = cart.map(p => `${p.name} - R$ ${p.price.toFixed(2)}`).join("\n");
+  const total = cart.reduce((acc, p) => acc + p.price, 0);
 
-  // Remove campos ocultos antigos (se houver)
+  // Remove campo antigo caso exista
   const oldInput = orderForm.querySelector("input[name='Produtos']");
   if(oldInput) oldInput.remove();
 

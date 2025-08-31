@@ -21,10 +21,11 @@ const openCartBtn = document.getElementById("openCart");
 const closeCartBtn = document.getElementById("closeCartBtn");
 const closeCartOverlay = document.getElementById("closeCart");
 const goCheckoutBtn = document.getElementById("goCheckout");
+const orderForm = document.querySelector("#checkout form");
 
 let cart = [];
 
-// Preenche o cardápio
+// Preenche o cardápio com imagens
 products.forEach(product => {
   const card = document.createElement("div");
   card.className = "border rounded-2xl p-4 flex flex-col justify-between hover:shadow-lg transition";
@@ -33,9 +34,8 @@ products.forEach(product => {
     <img src="${product.img}" alt="${product.name}" class="rounded-2xl w-full h-40 object-cover mb-4">
     <h4 class="font-bold text-lg">${product.name}</h4>
     <p class="mt-2 text-neutral-600">R$ ${product.price.toFixed(2)}</p>
-    <button class="mt-4 px-3 py-2 rounded-2xl bg-neutral-900 text-white hover:opacity-90" onclick="addToCart(${product.id})">
-      Adicionar ao carrinho
-    </button>
+    <button class="mt-4 px-3 py-2 rounded-2xl bg-neutral-900 text-white hover:opacity-90"
+      onclick="addToCart(${product.id})">Adicionar ao carrinho</button>
   `;
 
   productsContainer.appendChild(card);
@@ -48,11 +48,10 @@ function addToCart(productId) {
   updateCartUI();
 }
 
-// Atualiza o carrinho e resumo
+// Atualiza carrinho e resumo com imagens
 function updateCartUI() {
   cartCount.textContent = cart.length;
 
-  // Painel carrinho
   cartItemsContainer.innerHTML = "";
   let total = 0;
   cart.forEach((product, index) => {
@@ -63,9 +62,8 @@ function updateCartUI() {
     item.innerHTML = `
       <div class="flex items-center gap-3">
         <img src="${product.img}" alt="${product.name}" class="w-12 h-12 object-cover rounded-xl">
-        <span>${product.name}</span>
+        <span>${product.name} - R$ ${product.price.toFixed(2)}</span>
       </div>
-      <span>R$ ${product.price.toFixed(2)}</span>
       <button class="text-red-500" onclick="removeFromCart(${index})">✕</button>
     `;
     cartItemsContainer.appendChild(item);
@@ -86,8 +84,31 @@ openCartBtn.addEventListener("click", () => cartPanel.classList.remove("hidden")
 closeCartBtn.addEventListener("click", () => cartPanel.classList.add("hidden"));
 closeCartOverlay.addEventListener("click", () => cartPanel.classList.add("hidden"));
 
-// Ir para o checkout
+// Ir para checkout
 goCheckoutBtn.addEventListener("click", () => {
   cartPanel.classList.add("hidden");
   document.getElementById("checkout").scrollIntoView({ behavior: "smooth" });
+});
+
+// Envia os produtos junto com o formulário
+orderForm.addEventListener("submit", (e) => {
+  if(cart.length === 0){
+    e.preventDefault();
+    alert("Seu carrinho está vazio!");
+    return;
+  }
+
+  const total = cart.reduce((acc, p) => acc + p.price, 0);
+  const produtosString = cart.map(p => `${p.name} - R$ ${p.price.toFixed(2)}`).join("\n");
+
+  // Remove campos ocultos antigos (se houver)
+  const oldInput = orderForm.querySelector("input[name='Produtos']");
+  if(oldInput) oldInput.remove();
+
+  // Cria campo oculto para enviar via FormSubmit
+  let hiddenInput = document.createElement("input");
+  hiddenInput.type = "hidden";
+  hiddenInput.name = "Produtos";
+  hiddenInput.value = produtosString + `\nTotal: R$ ${total.toFixed(2)}`;
+  orderForm.appendChild(hiddenInput);
 });
